@@ -27,6 +27,18 @@ function writeText(ctx, textArray, x, y) {
   }
 }
 
+// Ищем максимальный элемент в массиве
+var getMaxElement = function(arr) {
+  var maxElement = arr[0];
+
+  for (var i = 1; i < arr.length; i++) {
+    if (arr[i] > maxElement) {
+      maxElement = arr[i];
+    }
+  }
+
+  return maxElement;
+};
 
 window.renderStatistics = function(ctx, names, times) {
   var startX = 100;
@@ -36,24 +48,35 @@ window.renderStatistics = function(ctx, names, times) {
 
   writeText(ctx, ['Ура вы победили!', 'Список результатов: '], 110, 50);
 
+  var maxTime = getMaxElement(times);
+
   var columnX = startX + 20;
   var columnY = startY + CLOUD_HEIGHT - 20;
   ctx.fillStyle = '#000';
+
+  // var playerIndex = 0;
+  // var playerName = 'Вы';
+  // var players = ['Вы', 'Иван', 'Юлия', 'Кекс'];
+  // for (var i = 0; i < players.length; i++){
+  //   ctx.fillText();
+  //   ctx.fillRect();
+  // }
+
   ctx.fillText('Вы', columnX, columnY);
   fillBarColor(ctx, 'Вы');
-  ctx.fillRect(columnX, columnY-150-FONT_GAP, BAR_WIDTH, 150);
+  ctx.fillRect(columnX, columnY-150-FONT_GAP, BAR_WIDTH, (150 * times[i]) / maxTime);
 
   ctx.fillStyle = '#000';
   columnX = columnX + BAR_WIDTH + INDENT;
   ctx.fillText(names[1], columnX, columnY);
   fillBarColor(ctx, names[1]);
-  ctx.fillRect(columnX, columnY-150-FONT_GAP, BAR_WIDTH, 150);
+  ctx.fillRect(columnX, columnY-150-FONT_GAP, BAR_WIDTH, (150 * times[i]) / maxTime);
 
   ctx.fillStyle = '#000';
   columnX = columnX + BAR_WIDTH + INDENT;
   ctx.fillText(names[2], columnX, columnY);
   fillBarColor(ctx, names[2]);
-  ctx.fillRect(columnX, columnY-150-FONT_GAP, BAR_WIDTH, 150);
+  ctx.fillRect(columnX, columnY-150-FONT_GAP, BAR_WIDTH, (150 * times[i]) / maxTime);
 
   // 1) найти максимальное значение в списке times
   // 2) высота столбца с максимальным знаечнием будет равна 150
