@@ -8,7 +8,7 @@ var GAP = 10;
 var FONT_GAP = 15;
 var TEXT_WIDTH = 50;
 var BAR_WIDTH = 40;
-var barHeight = CLOUD_HEIGHT - GAP - TEXT_WIDTH - GAP;
+var maxBarHeight = 150;
 var INDENT = 50;
 
 var renderCloud = function(ctx, x, y, color) {
@@ -16,7 +16,7 @@ var renderCloud = function(ctx, x, y, color) {
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
 
-// Пишем текс на облаке
+// Пишем текс на облаке инструкция
 function writeText(ctx, textArray, x, y) {
   // var y ;
   ctx.fillStyle = '#000';
@@ -78,19 +78,37 @@ window.renderStatistics = function(ctx, names, times) {
   fillBarColor(ctx, names[2]);
   ctx.fillRect(columnX, columnY-150-FONT_GAP, BAR_WIDTH, (150 * times[i]) / maxTime);
 
-  // 1) найти максимальное значение в списке times
+
+  // ctx.fillText(players[0], columnX, columnY*i);
+  // fillBarColor(ctx, players[0]);
+  // ctx.fillRect(columnX + (BAR_WIDTH + INDENT)*0, columnY-150-FONT_GAP, BAR_WIDTH, (150 * times[i]) / maxTime);
+
+  // ctx.fillStyle = '#000';
+
+  // ctx.fillText(players[1], columnX, columnY*i);
+  // fillBarColor(ctx, players[1]);
+  // ctx.fillRect(columnX + (BAR_WIDTH + INDENT)*1, columnY-150-FONT_GAP, BAR_WIDTH, (150 * times[i]) / maxTime);
+
+  // ctx.fillStyle = '#000';
+
+  // ctx.fillText(players[2], columnX, columnY*i);
+  // fillBarColor(ctx, players[2]);
+  // ctx.fillRect(columnX + (BAR_WIDTH + INDENT)*2, columnY-150-FONT_GAP, BAR_WIDTH, (150 * times[i]) / maxTime);
+
+
+  // ОТРИСОВКА ТЕКСТА И СТОЛБЦА ОБЩАЯ
+
+  // for (var i = 0; i < players.length; i++){
+
+  // ctx.fillText(players[i], columnX, columnY*i);
+  // fillBarColor(ctx, players[i]);
+  // ctx.fillRect(columnX + (BAR_WIDTH + INDENT)*i, columnY-maxBarHeight-FONT_GAP, BAR_WIDTH, (maxBarHeight * times[i]) / maxTime);
+  }
+
+
+// 1) найти максимальное значение в списке times
   // 2) высота столбца с максимальным знаечнием будет равна 150
   // 3) высота других столбцов будет равна 150*(times[i]/maxTime)
-
-
-
-  // ctx.fillText('Иван', 110, 105);
-  // ctx.fillRect(160, 90, 40, 150);
-
-  // ctx.fillText('Юлия', 110, 135);
-  // ctx.fillRect(210, 90, 40, 150);
-};
-
 
 // Цвет гистограммы-бара в зависимости от имени игрока
 function fillBarColor(ctx, namePlayer) {
@@ -102,83 +120,3 @@ function fillBarColor(ctx, namePlayer) {
 
   }
 }
-
-// 'use strict';
-
-// window.renderStatistics = function (ctx, names, times) {
-//   var renderCloud = {
-//     // startX: 100,
-//     // startY: 10,
-//     CLOUD_X: 100,
-//     CLOUD_Y: 10,
-//     RECT_WIDTH: 420,
-//     RECT_HEIGHT: 270,
-//     GAP: 10,
-//     text: ['Ура вы победили!', 'Список результатов: ']
-// }
-//   };
-
-
-//   // Рисуем прямоугольник-облако
-// var renderCloud = function(ctx, x, y, color) {
-//   ctx.fillStyle = color;
-//   ctx.fillRect(CLOUD_X, CLOUD_Y, RECT_WIDTH, RECT_HEIGHT);
-// };
-
-
-// window.renderStatistics = function(ctx) {
-//   renderCloud(ctx, 110, 60, 'rgba(0, 0, 0, 0.3)');
-//   renderCloud(ctx, 100, 50, '#fff');
-// };
-
-
-// window.renderStatistics = function(ctx, names, times) {
-//   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.3)');
-//   renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
-// };
-
-//   // Пишем текст, а надо на облаке, чб он был написан
-//   function writeText(textArray) {
-//     ctx.fillStyle = '#000';
-
-
-
-
-//     ctx.font = '16px PT Mono';
-//     // сtx.fillText('Ура, вы победили! ', x,y)
-//     // сtx.fillText('Список результатов: ', x,y)
-//   }
-
-
-// ctx.fillStyle = '#000';
-
-//   var playerIndex = 0;
-//   var playerName = 'Вы';
-
-//   var players = ['Вы', 'Иван', 'Юлия'];
-
-//   // максимальный элемент массива
-// var getMaxElement = function(arr) {
-//   var maxElement = arr[0];
-
-//   for (var i = 1; i < arr.length; i++) {
-//     if (arr[i] > maxElement) {
-//       maxElement = arr[i];
-//     }
-//   }
-
-//   return maxElement;
-// };
-
-// var maxTime = getMaxElement(times);
-
-//  // Цвет гистограммы-бара в зависимости от имени игрока
-//   function fillBarColor(namePlayer) {
-//     var randomOpacity =   ???;
-//     if (namePlayer === 'Вы') {
-//       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-//     } else {
-//       ctx.fillStyle = 'rgba(0, 0, 255, ' + randomOpacity + ')';
-//     }
-//   }
-// };
